@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Azulejando</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/estilos/mainStyle.css">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <div>
+        <a>AZULEJANDO</a>
+      </div>
+
+      <nav class="navbar">
+        <a href="home.html"><i class='bx bx-home'></i>Home</a>
+        <a href="about.html">Sobre nós</a>
+        <a href="contact.html">Contato</a>
+      </nav>
+
+      <form action="#" class="search">
+        <input type="text" name="search" placeholder="Search...">
+        <button type="submit"><i class='bx bx-search'></i></button>
+      </form>
+
+      <div class="button-group">
+        <button id="cartButton"><i class='bx bx-cart'></i><span id="cartCount">0</span></button>
+        <button onclick="window.location.href = 'login.html';"><i class='bx bx-user'></i></button>
+      </div>
+    </header>
+
+    <main>
+      <div class="piso-box">
+        <h1> Piso</h1>
+        <img src="/imagens/venda1.jpg">
+        <a>BRL 500<button class="cart-add"><i class='bx bx-cart-add'></i></button></a>
+      </div>
+      <div class="piso-box">
+        <h1>Piso</h1>
+        <img src="/imagens/venda2.jpg">
+        <a>BRL 500<button class="cart-add"><i class='bx bx-cart-add'></i></button></a>
+      </div>
+      <div class="piso-box">
+        <h1>Piso</h1>
+        <img src="/imagens/venda3.jpg">
+        <a>BRL 500<button class="cart-add"><i class='bx bx-cart-add'></i></button></a>
+      </div>
+      <div class="piso-box">
+        <h1> Piso</h1>
+        <img src="/imagens/venda4.jpg">
+        <a>BRL 500<button class="cart-add"><i class='bx bx-cart-add'></i></button></a>
+      </div>
+    </main>
+
+    <div class="main2">
+      <div class="piso-box">
+        <h1> Piso</h1>
+        <img src="/imagens/venda5.jpg">
+        <a>BRL 500<button class="cart-add"><i class='bx bx-cart-add'></i></button></a>
+      </div>
+      <div class="piso-box">
+        <h1>Piso</h1>
+        <img src="/imagens/venda6.jpg">
+        <a>BRL 500<button class="cart-add"><i class='bx bx-cart-add'></i></button></a>
+      </div>
+      <div class="piso-box">
+        <h1>Piso</h1>
+        <img src="/imagens/venda7.jpg">
+        <a>BRL 500<button class="cart-add"><i class='bx bx-cart-add'></i></button></a>
+      </div>
+      <div class="piso-box">
+        <h1> Piso</h1>
+        <img src="/imagens/venda8.jpg">
+        <a>BRL 500<button class="cart-add"><i class='bx bx-cart-add'></i></button></a>
+      </div>
+    </div>
+
+    <footer>
+      <h3>Referencias</h3>
+      <a>PISO 2 - Foto de <a
+          href="https://unsplash.com/pt-br/@jamesm?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">James
+          McDonald</a> na <a
+          href="https://unsplash.com/pt-br/fotografias/padroes-de-damasco-preto-e-branco-GZMjMukr5zU?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
+        PISO 1 FOTO de <a
+          href="https://unsplash.com/pt-br/@worldsbetweenlines?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Patrick
+          Hendry</a> na <a
+          href="https://unsplash.com/pt-br/fotografias/um-close-up-de-uma-parede-de-azulejos-com-desenhos-laranja-e-preto-hezNrE5QEa8?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a></a>
+    </footer>
+  </div>
+  <script>
+    let cartCount = 0;
+
+    document.querySelectorAll('.cart-add').forEach(button => {
+      button.addEventListener('click', () => {
+        cartCount++;
+        document.getElementById('cartCount').innerText = cartCount;
+      });
+    });
+  </script>
+</body>
+
+</html>

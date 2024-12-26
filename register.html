@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Site de Vendas</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/estilos/regStyle.css">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body>
+  <div class="wrapper">
+    <form id="registerForm">
+      <h1>Cadastro</h1>
+      <div class="input-box">
+        <input type="email" name="email" id="email" placeholder="Seu email" required>
+        <i class='bx bx-envelope'></i>
+      </div>
+      <div class="input-box">
+        <input type="text" name="firstName" id="firstName" placeholder="Primeiro nome" required>
+        <i class='bx bx-face'></i>
+      </div>
+      <div class="input-box">
+        <input type="text" name="cpfCnpj" id="cpfCnpj" placeholder="CPF ou CNPJ" required>
+        <i class='bx bx-face'></i>
+      </div>
+      <div class="input-box">
+        <input type="password" name="password" id="password" placeholder="Senha" required>
+        <i class='bx bxs-lock-alt'></i>
+      </div>
+      <div class="input-box">
+        <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirme a senha" required>
+        <i class='bx bxs-lock-alt'></i>
+      </div>
+      <button type="submit" class="log">Registre</button>
+    </form>
+    <div class="register-link">
+      <p>Já tem uma conta?<a href="login.html"> Entrar</a></p>
+      <p>Entre como admin<a href="admin.html"> Menu ADM</a></p>
+    </div>
+  </div>
+  <script>
+    document.getElementById('registerForm').addEventListener('submit', function (event) {
+      event.preventDefault();
+      const email = document.getElementById('email').value;
+      const firstName = document.getElementById('firstName').value;
+      const cpfCnpj = document.getElementById('cpfCnpj').value;
+      const password = document.getElementById('password').value;
+      const confirmPassword = document.getElementById('confirmPassword').value;
+
+      if (password !== confirmPassword) {
+        alert("As senhas não coincidem!");
+        return;
+      }
+
+      let users = JSON.parse(localStorage.getItem('users')) || [];
+      users.push({ email, firstName, cpfCnpj, password });
+      localStorage.setItem('users', JSON.stringify(users));
+
+      alert("Usuário registrado com sucesso");
+      window.location.href = 'login.html';
+    });
+  </script>
+
+</body>
+
+</html>

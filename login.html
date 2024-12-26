@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Site de Vendas</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/estilos/regStyle.css">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body>
+  <div class="wrapper">
+    <form id="loginForm">
+      <h1>Login</h1>
+      <div class="input-box">
+        <input type="email" name="email" id="loginEmail" placeholder="Seu email" required>
+        <i class='bx bxs-user'></i>
+      </div>
+      <div class="input-box">
+        <input type="password" name="password" id="loginPassword" placeholder="Senha" required>
+        <i class='bx bxs-lock-alt'></i>
+      </div>
+      <button type="submit" class="log">Entrar</button>
+    </form>
+    <div class="register-link">
+      <p>Não tem uma conta?<a href="register.html"> Cadastre-se</a></p>
+      <p>Entre como admin<a href="admin.html"> Menu ADM</a></p>
+    </div>
+  </div>
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', function (event) {
+      event.preventDefault();
+      const email = document.getElementById('loginEmail').value;
+      const password = document.getElementById('loginPassword').value;
+
+      let users = JSON.parse(localStorage.getItem('users')) || [];
+      const user = users.find(u => u.email === email && u.password === password);
+
+      if (user) {
+        alert("Login bem-sucedido");
+        window.location.href = 'home.html'; // Redirecionar para a página inicial após o login bem-sucedido
+      } else {
+        alert("Email ou senha inválidos");
+      }
+    });
+  </script>
+
+</body>
+
+</html>

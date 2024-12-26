@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Azulejando</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/estilos/admin.css">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <style>
+    .selected {
+      background-color: #e0e0e0;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <div class="title">
+        <a>AZULEJANDO</a>
+      </div>
+      <div class="title"><a>MENU ADMIN</a></div>
+    </header>
+    <main>
+      <div class="wrapper">
+        <form action="#" class="search">
+          <input type="text" id="searchInput" placeholder="Pesquisar Cliente...">
+        </form>
+        <div class="button-group">
+          <button id="addUserBtn"><i class='bx bx-user-plus'></i></button>
+          <button id="editUserBtn"><i class='bx bx-edit-alt'></i></button>
+          <button id="deleteUserBtn"><i class='bx bx-user-x'></i></button>
+        </div>
+        <div id="userList" class="gerencia"></div>
+      </div>
+    </main>
+    <footer>
+      <h3>Referencias</h3>
+      <a href="https://www.loremipzum.com/pt/gerador-de-texto">gerador de texto</a>
+    </footer>
+  </div>
+  <script>
+    window.onload = function () {
+      displayUsers();
+    };
+
+    document.getElementById('addUserBtn').addEventListener('click', function () {
+      const email = prompt("Digite o email do usuário:");
+      const firstName = prompt("Digite o primeiro nome do usuário:");
+      const cpfCnpj = prompt("Digite o CPF ou CNPJ do usuário:");
+      const password = prompt("Digite a senha do usuário:");
+
+      if (email && firstName && cpfCnpj && password) {
+        let users = JSON.parse(localStorage.getItem('users')) || [];
+        users.push({ email, firstName, cpfCnpj, password });
+        localStorage.setItem('users', JSON.stringify(users));
+        displayUsers();
+      } else {
+        alert("Todos os campos são obrigatórios!");
+      }
+    });
+
+    document.getElementById('editUserBtn').addEventListener('click', function () {
+      const selectedUserEmail = document.querySelector('.selected')?.dataset.email;
+      if (selectedUserEmail) {
+        let users = JSON.parse(localStorage.getItem('users')) || [];
+        const user = users.find(user => user.email === selectedUserEmail);
+
+        const email = prompt("Editar email do usuário:", user.email);
+        const firstName = prompt("Editar primeiro nome do usuário:", user.firstName);
+        const cpfCnpj = prompt("Editar CPF ou CNPJ do usuário:", user.cpfCnpj);
+        const password = prompt("Editar senha do usuário:", user.password);
+
+        if (email && firstName && cpfCnpj && password) {
+          user.email = email;
+          user.firstName = firstName;
+          user.cpfCnpj = cpfCnpj;
+          user.password = password;
+          localStorage.setItem('users', JSON.stringify(users));
+          displayUsers();
+        } else {
+          alert("Todos os campos são obrigatórios!");
+        }
+      } else {
+        alert("Por favor, selecione um usuário para editar!");
+      }
+    });
+
+    document.getElementById('deleteUserBtn').addEventListener('click', function () {
+      const selectedUserEmail = document.querySelector('.selected')?.dataset.email;
+      if (selectedUserEmail) {
+        let users = JSON.parse(localStorage.getItem('users')) || [];
+        users = users.filter(user => user.email !== selectedUserEmail);
+        localStorage.setItem('users', JSON.stringify(users));
+        displayUsers();
+      } else {
+        alert("Por favor, selecione um usuário para excluir!");
+      }
+    });
+
+    function displayUsers() {
+      let users = JSON.parse(localStorage.getItem('users')) || [];
+      const userList = document.getElementById('userList');
+      userList.innerHTML = users.map(user => `<div class="user" data-email="${user.email}">${user.email} - ${user.firstName}</div>`).join('');
+
+      document.querySelectorAll('.user').forEach(userDiv => {
+        userDiv.addEventListener('click', function () {
+          document.querySelectorAll('.user').forEach(div => div.classList.remove('selected'));
+          userDiv.classList.add('selected');
+        });
+      });
+    }
+  </script>
+
+</body>
+
+</html>
